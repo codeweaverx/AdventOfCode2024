@@ -1,0 +1,151 @@
+//Archived alternate code
+
+/*
+using LLRow = SimpleLinkedList<char>;
+  using LLGrid = SimpleLinkedList<LLRow>;
+
+
+
+  void DumpCols(const LLRow::SimpleIterator col)
+  {
+    if (col.at_end())
+    {
+      return;
+    }
+    std::cout << *col;
+    DumpCols(col.next());
+  }
+
+  void DumpRows(const LLGrid::SimpleIterator row)
+  {
+    if (row.at_end())
+    {
+      return;
+    }
+    DumpCols(row->begin());
+    std::cout << std::endl;
+    DumpRows(row.next());
+  }
+
+  void DumpGrid(const LLGrid& grid)
+  {
+    DumpRows(grid.begin());
+  }
+
+
+  template <typename I>
+  int part1_match(int acc, const LLRow::SimpleIterator i_col, const I i_str, const I i_str_end)
+  {
+    if (i_str == i_str_end)
+    {
+      return acc+1;
+    }
+    if (i_col.at_end())
+    {
+      return acc;
+    }
+    if (*i_col != *i_str)
+    {
+      return acc;
+    }
+    return part1_match(acc, i_col.next(), i_str+1, i_str_end);
+  }
+
+  template <typename I>
+  int part1_horizontal(int acc, const LLRow::SimpleIterator i_col, const I i_str, const I i_str_end)
+  {
+    if (i_str == i_str_end)
+    {
+      assert(false && "part1_horizontal(): string should not be empty.");
+    }
+    if (i_col.at_end())
+    {
+      return acc;
+    }
+    std::cout << *i_col;
+    acc = part1_match(acc, i_col, i_str, i_str_end);
+    return part1_horizontal(acc,i_col.next(), i_str, i_str_end);
+  }
+
+  template <typename I>
+  int part1_every_horizontal(int acc, const LLGrid::SimpleIterator i_rows, const I i_str, const I i_str_end)
+  {
+    if (i_rows.at_end())
+    {
+      return acc;
+    }
+    acc = part1_horizontal(acc, i_rows->begin(), i_str, i_str_end);
+    std::cout << std::endl;
+    return part1_every_horizontal(acc,i_rows.next(),i_str,i_str_end);
+  }
+
+
+  template <typename I>
+  int part1_every_vertical(int acc, SimpleLinkedList<LLRow::SimpleIterator> i_i_rows, const I i_str, const I i_str_end)
+  {
+    if (i_i_rows.at_end())
+    {
+      return acc;
+    }
+
+    //acc = part1_horizontal(acc, i_row->begin(), i_str, i_str_end);
+    //std::cout << std::endl;
+    //return part1_every_vertical(acc,i_row.next(),i_str,i_str_end);
+    return -1;
+  }
+
+  void part1_make_iterator_set_from_rows_impl(SimpleLinkedList<LLRow::SimpleIterator>& iters,LLGrid::SimpleIterator i_rows)
+  {
+    if (i_rows.at_end())
+    {
+      return;
+    }
+    iters.push_back(i_rows->begin());
+    part1_make_iterator_set_from_rows_impl(iters,i_rows.next())
+  }
+
+  SimpleLinkedList<LLRow::SimpleIterator> part1_make_iterator_set_from_rows(LLGrid::SimpleIterator i_rows)
+  {
+    auto result = SimpleLinkedList<LLRow::SimpleIterator>{};
+    part1_make_iterator_set_from_rows_impl(result,i_rows);
+  }
+
+  template <typename I>
+  int part1_every_vertical_start(int acc, const LLGrid::SimpleIterator i_rows, const I i_str, const I i_str_end)
+  {
+    const auto row_iterators = part1_make_iterator_set_from_rows(i_rows);
+
+    return part1_every_vertical(acc,row_iterators,i_str,i_str_end);
+  }
+
+  int part1_LL(const LLGrid& grid, const std::string& search_string) 
+  {
+    if (search_string == "")
+    {
+      return 0;
+    }
+    int acc = 0;
+    acc = part1_every_horizontal(acc,grid.begin(),search_string.cbegin(),search_string.cend());
+    acc = part1_every_horizontal(acc,grid.begin(),search_string.crbegin(),search_string.crend());
+
+    return acc;
+  }
+
+  int puzzle_04_part1(const std::vector<std::string>& grid)
+  {
+    LLGrid ll_grid{};
+    for (auto j = grid.crbegin(); j != grid.crend(); ++j)
+    {
+      LLRow row{};
+      for (auto i = j->crbegin(); i != j->crend(); ++i)
+      {
+        row.push_front(*i);
+      }
+      ll_grid.push_front(std::move(row));
+    }
+
+    return part1_LL(ll_grid,"XMAS");
+  }
+
+  */
+
